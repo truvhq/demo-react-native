@@ -1,0 +1,72 @@
+const importsOrder = require('./eslint/.eslintrc.imports.js');
+
+module.exports = {
+  plugins: ['import', 'lodash'],
+  extends: [
+    'prettier',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+  ],
+  rules: {
+    'semi': ['error', 'always'],
+    'no-extra-semi': 'off',
+    'curly': 'error',
+    'lodash/import-scope': [2, 'method-package'],
+    'no-console': 'warn',
+    'no-debugger': 'error',
+    'newline-after-var': 'error',
+    'newline-before-return': 'error',
+    'comma-dangle': 'off',
+    'react/prop-types': 'off',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    'react/display-name': 'off',
+    'no-case-declarations': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/no-extra-semi': 'off',
+    'no-useless-escape': 'off',
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: '*', next: 'return' },
+      { blankLine: 'always', prev: '*', next: 'block-like' },
+      { blankLine: 'always', prev: 'block-like', next: '*' },
+      { blankLine: 'never', prev: 'case', next: 'default' },
+      { blankLine: 'never', prev: 'case', next: 'case' },
+      { blankLine: 'any', prev: '*', next: 'break' },
+      { blankLine: 'always', prev: '*', next: ['const', 'let', 'var'] },
+      { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+      { blankLine: 'any', prev: ['const'], next: ['const'] },
+      { blankLine: 'any', prev: ['let'], next: ['let'] },
+    ],
+    'sort-imports': [
+      'error',
+      {
+        ignoreDeclarationSort: true,
+      },
+    ],
+    'quotes': ['error', 'single', { avoidEscape: true }],
+    'react/jsx-sort-props': [
+      'error',
+      {
+        callbacksLast: true,
+        ignoreCase: false,
+        reservedFirst: true,
+        noSortAlphabetically: false,
+        shorthandFirst: true,
+        shorthandLast: false,
+      },
+    ],
+    'react/jsx-filename-extension': [
+      'error',
+      {
+        extensions: ['.js', '.jsx', '.tsx'],
+      },
+    ],
+    ...importsOrder.rules,
+  },
+};
