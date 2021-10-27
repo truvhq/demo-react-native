@@ -48,7 +48,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
         provider_id: productSettings.providerId || undefined,
         company_mapping_id: productSettings.mappingId || undefined,
         account:
-          product === 'deposit_switch'
+          product === 'deposit_switch' || product === 'pll'
             ? {
                 account_number: productSettings.accountNumber,
                 account_type: productSettings.accountType,
@@ -107,7 +107,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
                 <FieldSet>
                   <Field route="Company Mapping ID" value={productSettings.mappingId} />
                   <Field route="Provider ID" value={productSettings.providerId} />
-                  {product === 'deposit_switch' && (
+                  {(product === 'deposit_switch' || product === 'pll') && (
                     <>
                       <Field route="Routing Number" value={productSettings.routingNumber} />
                       <Field route="Account Number" value={productSettings.accountNumber} />
