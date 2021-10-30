@@ -38,7 +38,7 @@ export const Field = ({ label, value, route, routeParams = {}, onChange, onSubmi
       autoCapitalize="none"
       style={{ ...styles.root, ...styles.label }}
       value={value}
-      onChange={(e) => onChange?.(e.nativeEvent.text)}
+      onChangeText={(text) => onChange?.(text)}
       onSubmitEditing={onSubmitEditing}
     />
   );

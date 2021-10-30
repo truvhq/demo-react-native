@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Alert, StyleSheet, View } from 'react-native';
-import Toast from 'react-native-root-toast';
 
 import { AdditionalSettings } from '../../components/AdditionalSettings';
 import { Button } from '../../components/Button';
@@ -28,13 +27,19 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings] = useProductSettings();
   const [product, setProduct] = useState('employment');
-  const [bridgeToken, setBridgeToken] = useState('');
+  const [bridgeToken, setBridgeToken] = useState('ca3919b0a3b446f39064ad9d997d1756');
+  const [bridgeTokenLoading, setBridgeTokenLoading] = useState(false);
   const { log } = useConsole();
   const { clientId, accessKey } = useSelectedSettings();
 
   useEffect(() => {
     console.log('getting bridge token');
 
+    if (!clientId || !accessKey) {
+      return;
+    }
+
+    setBridgeTokenLoading(true);
     setBridgeToken('');
     fetch(`${process.env.CITADEL_API_HOST}/v1/bridge-tokens/`, {
       method: 'POST',
@@ -62,10 +67,11 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
         return response.json();
       })
       .then((json: any) => {
-        console.log('got bridge token', json);
         setBridgeToken(json.bridge_token);
+        log(`Bridge Token ${json.bridge_token} received`);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => log(`Error while receiving blidge token, ${err}`))
+      .finally(() => setBridgeTokenLoading(false));
   }, [product, clientId, accessKey, productSettings]);
 
   return (
@@ -119,8 +125,9 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
               </AdditionalSettings>
             </View>
             <Button
+              disabled={bridgeTokenLoading}
               onPress={() => {
-                if (!bridgeToken || !clientId || !accessKey) {
+                if (!bridgeToken) {
                   Alert.alert(
                     'Can’t open Citadel Bridge',
                     'Add a key or change the environment in the settings to run Citadel Bridge.',
