@@ -23,6 +23,8 @@ const products = {
   fas: 'Funding account switch',
 } as const;
 
+const BASE_URL = process.env.CITADEL_WIDGET_URL ?? '';
+
 export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStackParamList, 'Index'>) => {
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings] = useProductSettings();
@@ -79,6 +81,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
       <View style={styles.container}>
         {isWidgetVisible ? (
           <CitadelWidget
+            baseUrl={BASE_URL}
             bridgeToken={bridgeToken}
             style={styles.container}
             onClose={() => {
@@ -136,6 +139,8 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
 
                   return;
                 }
+
+                log(`Opening Widget with baseUrl: ${BASE_URL}`);
 
                 setWidgetVisible(true);
               }}

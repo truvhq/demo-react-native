@@ -9,6 +9,7 @@ export type BridgeMessage = {
 };
 
 export type CitadelWidgetProps = {
+  baseUrl: string;
   style: StyleProp<ViewStyle>;
   onEvent: (payload: Record<string, unknown>) => void;
   onLoad: () => void;
@@ -19,6 +20,7 @@ export type CitadelWidgetProps = {
 };
 
 export const CitadelWidget = ({
+  baseUrl,
   style,
   onLoad,
   onClose,
@@ -55,7 +57,7 @@ export const CitadelWidget = ({
       javaScriptEnabled={true}
       originWhitelist={['*']}
       source={{
-        uri: `${process.env.CITADEL_WIDGET_URL}/mobile.html?bridge_token=${bridgeToken}`,
+        uri: `${baseUrl}/mobile.html?bridge_token=${bridgeToken}`,
       }}
       style={style}
       onError={onError}
