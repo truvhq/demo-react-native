@@ -29,17 +29,17 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings] = useProductSettings();
   const [product, setProduct] = useState('employment');
-  const [bridgeToken, setBridgeToken] = useState('ca3919b0a3b446f39064ad9d997d1756');
+  const [bridgeToken, setBridgeToken] = useState('');
   const [bridgeTokenLoading, setBridgeTokenLoading] = useState(false);
   const { log } = useConsole();
   const { clientId, accessKey } = useSelectedSettings();
 
   useEffect(() => {
-    console.log('getting bridge token');
-
     if (!clientId || !accessKey) {
       return;
     }
+
+    log(`getting bridge token for client_id ${clientId}`);
 
     setBridgeTokenLoading(true);
     setBridgeToken('');
@@ -140,7 +140,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
                   return;
                 }
 
-                log(`Opening Widget with baseUrl: ${BASE_URL}`);
+                log(`Opening Widget with baseUrl: ${BASE_URL} and bridge_token ${bridgeToken}`);
 
                 setWidgetVisible(true);
               }}
