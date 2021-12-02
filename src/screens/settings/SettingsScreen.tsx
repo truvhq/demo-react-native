@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
 import { View } from 'react-native';
 
@@ -21,7 +21,7 @@ export const SettingsScreen = () => {
         <Header>Settings</Header>
         <FieldSet>
           <Select
-            items={{ prod: 'Production', sandbox: 'Sandbox' }}
+            items={{ sandbox: 'Sandbox', dev: 'Development', prod: 'Production' }}
             label="Environment"
             value={env}
             onChange={(itemValue) => setEnv(itemValue)}

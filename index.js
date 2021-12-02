@@ -1,8 +1,8 @@
 import { registerRootComponent } from 'expo';
-import { YellowBox } from 'react-native';
+import { LogBox } from 'react-native';
 
 import { App } from './src/App';
 
-YellowBox.ignoreWarnings(['Setting a timer']);
+LogBox.ignoreLogs(['Setting a timer']);
 
 registerRootComponent(App);

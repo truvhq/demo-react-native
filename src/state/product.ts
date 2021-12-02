@@ -12,7 +12,8 @@ export const useWidget = () => {
 type ProductSettings = {
   mappingId: string;
   providerId: string;
-  depositValue: number;
+  depositValue: string;
+  depositType: string;
   routingNumber: string;
   accountNumber: string;
   bankName: string;
@@ -24,7 +25,8 @@ const productSettingsState = atom<ProductSettings>({
   default: {
     mappingId: '',
     providerId: '',
-    depositValue: 1,
+    depositValue: '1',
+    depositType: 'amount',
     routingNumber: '123456789',
     accountNumber: '160025987',
     bankName: 'TD Bank',

@@ -61,6 +61,8 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
                 account_type: productSettings.accountType,
                 bank_name: productSettings.bankName,
                 routing_number: productSettings.routingNumber,
+                deposit_value: productSettings.depositValue,
+                deposit_type: productSettings.depositType,
               }
             : undefined,
       }),
@@ -70,7 +72,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
       })
       .then((json: any) => {
         setBridgeToken(json.bridge_token);
-        log(`Bridge Token ${json.bridge_token} received`);
+        log(`Bridge Token response ${JSON.stringify(json)}`);
       })
       .catch((err) => log(`Error while receiving blidge token, ${err}`))
       .finally(() => setBridgeTokenLoading(false));
@@ -118,6 +120,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
                   <Field route="Provider ID" value={productSettings.providerId} />
                   {(product === 'deposit_switch' || product === 'pll') && (
                     <>
+                      <Field route="Deposit Value" value={productSettings.depositValue} />
                       <Field route="Routing Number" value={productSettings.routingNumber} />
                       <Field route="Account Number" value={productSettings.accountNumber} />
                       <Field route="Bank Name" value={productSettings.bankName} />
