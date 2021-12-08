@@ -19,7 +19,7 @@ const products = {
   income: 'Income and employment',
   deposit_switch: 'Direct deposit switch',
   pll: 'Paycheck Linked Loan',
-  admin: 'Admin',
+  admin: 'Employee directory',
   fas: 'Funding account switch',
 } as const;
 
