@@ -20,7 +20,6 @@ const products = {
   deposit_switch: 'Direct deposit switch',
   pll: 'Paycheck Linked Loan',
   admin: 'Employee directory',
-  fas: 'Funding account switch',
 } as const;
 
 const BASE_URL = process.env.CITADEL_WIDGET_URL ?? '';
