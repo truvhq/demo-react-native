@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { CitadelWidget } from '@citadelid/react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Alert, StyleSheet, View } from 'react-native';
 
@@ -10,7 +11,6 @@ import { Header } from '../../components/Header';
 import { Layout } from '../../components/Layout';
 import { Select } from '../../components/Select';
 
-import { CitadelWidget } from '../../CitadelWidget';
 import { useConsole, useProductSettings, useSelectedSettings, useWidget } from '../../state';
 import { ProductStackParamList } from './types';
 
@@ -35,6 +35,8 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
 
   useEffect(() => {
     if (!clientId || !accessKey) {
+      setBridgeToken('');
+
       return;
     }
 
