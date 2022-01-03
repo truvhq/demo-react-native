@@ -9,25 +9,18 @@ import { Button } from '../../components/Button';
 import { Field, FieldSet } from '../../components/Field';
 import { Header } from '../../components/Header';
 import { Layout } from '../../components/Layout';
-import { Select } from '../../components/Select';
+import { ProductsSelect, mapValueToProduct } from '../../components/ProductsSelect';
 
 import { useConsole, useProductSettings, useSelectedSettings, useWidget } from '../../state';
+import { Product } from '../../state/product';
 import { ProductStackParamList } from './types';
-
-const products = {
-  employment: 'Employment history',
-  income: 'Income and employment',
-  deposit_switch: 'Direct deposit switch',
-  pll: 'Paycheck Linked Loan',
-  admin: 'Employee directory',
-} as const;
 
 const BASE_URL = process.env.CITADEL_WIDGET_URL ?? '';
 
 export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStackParamList, 'Index'>) => {
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings] = useProductSettings();
-  const [product, setProduct] = useState('employment');
+  const [product, setProduct] = useState<Product>('employment');
   const [bridgeToken, setBridgeToken] = useState('');
   const [bridgeTokenLoading, setBridgeTokenLoading] = useState(false);
   const { log } = useConsole();
@@ -52,7 +45,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
         'X-Access-Secret': accessKey,
       },
       body: JSON.stringify({
-        product_type: product,
+        product_type: mapValueToProduct(product),
         provider_id: productSettings.providerId || undefined,
         company_mapping_id: productSettings.mappingId || undefined,
         account:
@@ -108,12 +101,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
             <View>
               <Header>Product</Header>
               <FieldSet>
-                <Select
-                  items={products}
-                  label="Product type"
-                  value={product}
-                  onChange={(product: string) => setProduct(product)}
-                />
+                <ProductsSelect value={product} onChange={(product: Product) => setProduct(product)} />
               </FieldSet>
               <AdditionalSettings>
                 <FieldSet>
