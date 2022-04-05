@@ -15,7 +15,7 @@ import { useConsole, useProductSettings, useSelectedSettings, useWidget } from '
 import { Product } from '../../state/product';
 import { ProductStackParamList } from './types';
 
-const BASE_URL = process.env.CITADEL_WIDGET_URL ?? '';
+const BASE_URL = process.env.TRUV_WIDGET_URL ?? '';
 
 export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStackParamList, 'Index'>) => {
   const [isWidgetVisible, setWidgetVisible] = useWidget();
@@ -37,7 +37,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
 
     setBridgeTokenLoading(true);
     setBridgeToken('');
-    fetch(`${process.env.CITADEL_API_HOST}/v1/bridge-tokens/`, {
+    fetch(`${process.env.TRUV_API_HOST}/v1/bridge-tokens/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -124,8 +124,8 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
               onPress={() => {
                 if (!bridgeToken) {
                   Alert.alert(
-                    'Can’t open Citadel Bridge',
-                    'Add a key or change the environment in the settings to run Citadel Bridge.',
+                    'Can’t open Truv Bridge',
+                    'Add a key or change the environment in the settings to run Truv Bridge.',
                     [{ text: 'Open settings', onPress: () => navigation.navigate('Settings') }]
                   );
 
@@ -137,7 +137,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
                 setWidgetVisible(true);
               }}
             >
-              Open Citadel Bridge
+              Open Truv Bridge
             </Button>
           </View>
         )}

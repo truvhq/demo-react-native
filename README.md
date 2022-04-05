@@ -1,4 +1,4 @@
-# CitadelAPI React Native Demo
+# Truv React Native Demo
 
 This demo app is based on the [Expo framework](https://docs.expo.dev).
 

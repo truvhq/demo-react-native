@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "citadel-demo",
-    "slug": "citadel-demo",
+    "name": "Truv Demo React Native",
+    "slug": "truv-demo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,7 +19,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.citadelapi",
+      "bundleIdentifier": "com.truv",
       "buildNumber": "1.0.0"
     },
     "android": {

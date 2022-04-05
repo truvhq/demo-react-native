@@ -5,7 +5,7 @@ declare module '*.svg' {
 }
 
 export type ProcessEnv = {
-  CITADEL_WIDGET_URL: string;
-  CITADEL_API_HOST: string;
+  TRUV_WIDGET_URL: string;
+  TRUV_API_HOST: string;
   ENV: 'dev' | 'prod';
 };
