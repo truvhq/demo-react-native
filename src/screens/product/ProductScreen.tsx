@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
-import { CitadelWidget } from '@citadelid/react-native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import TruvBridge from '@truv/react-native';
 import { Alert, StyleSheet, View } from 'react-native';
 
 import { AdditionalSettings } from '../../components/AdditionalSettings';
@@ -76,8 +76,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
     <Layout white={isWidgetVisible}>
       <View style={styles.container}>
         {isWidgetVisible ? (
-          <CitadelWidget
-            baseUrl={BASE_URL}
+          <TruvBridge
             bridgeToken={bridgeToken}
             style={styles.container}
             onClose={() => {

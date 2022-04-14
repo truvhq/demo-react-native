@@ -1139,13 +1139,6 @@
     "@babel/helper-validator-identifier" "^7.14.9"
     to-fast-properties "^2.0.0"
 
-"@citadelid/react-native@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@citadelid/react-native/-/react-native-2.0.2.tgz#3732e406d329f4d38e269df795378fd0e72df009"
-  integrity sha512-W3LQoSyyj8pXXOcM2I4MJgiDcRY+nntijUHIZcFVzlm6XOuVJQAfhrkhb+BeL7HniKB37EkWkHmmgj0eEwigiQ==
-  dependencies:
-    react-native-webview "11.6.2"
-
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.4.tgz#f864ae85004d0fcab6f50be9141c4da368d1656a"
@@ -1638,6 +1631,13 @@
   integrity sha512-5ctB49rmtTRQuTSBVgqMsEzBUjPP2ByUzBjNivA7jmvk+PDCl4oZsiR8KAm/twhxe215GYThfi2vUWXKAg6EEQ==
   dependencies:
     nanoid "^3.1.23"
+
+"@truv/react-native@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@truv/react-native/-/react-native-2.0.2.tgz#bf666f1aceb4dcb142278449901e077fa97c2992"
+  integrity sha512-/sv7dTprNRUL6yXT3fMUhl2RKQrCS1DpenfcXSrTUektPxJrfGCRxsb7RnOqylLqQmiROEnLDK6lVDzlEUDp4g==
+  dependencies:
+    react-native-webview "11.6.2"
 
 "@types/hammerjs@^2.0.36":
   version "2.0.40"
