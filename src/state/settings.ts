@@ -1,36 +1,38 @@
-import { useEffect } from 'react';
-
 import asyncStorage from '@react-native-async-storage/async-storage';
-import { atom, useRecoilState } from 'recoil';
+import { AtomEffect, atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 
-const envState = atom<'sandbox' | 'dev' | 'prod'>({
+const asyncStorageEffect =
+  (key: string): AtomEffect<any> =>
+  ({ setSelf, onSet }) => {
+    setSelf(
+      asyncStorage
+        .getItem(key)
+        .then((data: string | null) => (data ? JSON.parse(data) : ''))
+        .catch(() => null)
+    );
+    onSet((newValue, _, isReset) => {
+      isReset ? asyncStorage.removeItem(key) : asyncStorage.setItem(key, JSON.stringify(newValue));
+    });
+  };
+
+export const envState = atom<keyof AccessKeys>({
   key: 'envState',
   default: 'sandbox',
+  effects: [asyncStorageEffect('env')],
 });
 
 export const useEnv = () => {
   return useRecoilState(envState);
 };
 
-const clientIdState = atom<string>({
+export const clientIdState = atom<string>({
   key: 'clientIdState',
   default: '',
+  effects: [asyncStorageEffect('clientId')],
 });
 
 export const useClientId = () => {
   const [clientId, setClientId] = useRecoilState(clientIdState);
-
-  useEffect(() => {
-    asyncStorage.getItem('clientId').then((data: string | null) => {
-      if (data) {
-        setClientId(data);
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    asyncStorage.setItem('clientId', clientId);
-  }, [clientId]);
 
   return [clientId, setClientId] as const;
 };
@@ -47,38 +49,32 @@ const defaultAccessKeys: AccessKeys = {
   prod: '',
 };
 
-const accessKeysState = atom<AccessKeys>({
+export const accessKeysState = atom<AccessKeys>({
   key: 'accessKeys',
   default: defaultAccessKeys,
+  effects: [asyncStorageEffect('accessKeys')],
 });
 
 export const useAccessKeys = () => {
   const [accessKeys, setAccessKeys] = useRecoilState(accessKeysState);
 
-  useEffect(() => {
-    asyncStorage.getItem('accessKeys').then((data: string | null) => {
-      if (data) {
-        const values = JSON.parse(data);
-
-        setAccessKeys({ ...defaultAccessKeys, ...values });
-      }
-    });
-  }, []);
-
-  useEffect(() => {
-    asyncStorage.setItem('accessKeys', JSON.stringify(accessKeys));
-  }, [accessKeys]);
-
   return [accessKeys, setAccessKeys] as const;
 };
 
-export const useSelectedSettings = () => {
-  const [env] = useEnv();
-  const [clientId] = useClientId();
-  const [accessKeys] = useAccessKeys();
+export const selectedSettings = selector({
+  key: 'selectedSettings',
+  get: ({ get }) => {
+    const clientId = get(clientIdState);
+    const env = get(envState);
+    const accessKeys = get(accessKeysState);
 
-  return {
-    clientId,
-    accessKey: accessKeys[env],
-  };
+    return {
+      clientId,
+      accessKey: accessKeys[env as keyof AccessKeys],
+    };
+  },
+});
+
+export const useSelectedSettings = () => {
+  return useRecoilValue(selectedSettings);
 };
