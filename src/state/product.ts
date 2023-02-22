@@ -9,31 +9,10 @@ export const useWidget = () => {
   return useRecoilState(widgetState);
 };
 
-export const products = {
-  employment: 'Employment history',
-  income: 'Income and employment',
-  deposit_switch: 'Direct deposit switch',
-  pll: 'Paycheck Linked Loan',
-  directory: 'Employee directory',
-  history: 'Payroll history',
-} as const;
-
-export type Product = keyof typeof products;
-
-type ProductSettings = {
-  mappingId: string;
-  providerId: string;
-  depositValue: string;
-  depositType: string;
-  routingNumber: string;
-  accountNumber: string;
-  bankName: string;
-  accountType: 'checking';
-};
-
-const productSettingsState = atom<ProductSettings>({
-  key: 'employment',
+export const productSettingsState = atom<ProductSettings>({
+  key: 'productSettings',
   default: {
+    productType: 'income',
     mappingId: '',
     providerId: '',
     depositValue: '1',

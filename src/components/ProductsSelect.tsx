@@ -1,15 +1,7 @@
 import React, { VFC } from 'react';
 
-import { Product, products } from '../state/product';
+import { Product, products } from '../api/truv';
 import { Select } from './Select';
-
-export const mapValueToProduct = (value: Product) => {
-  if (value === 'directory' || value === 'history') {
-    return 'admin';
-  }
-
-  return value;
-};
 
 export type ProductsSelectProps = {
   value: Product;
