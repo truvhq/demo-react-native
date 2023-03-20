@@ -1,5 +1,6 @@
 import asyncStorage from '@react-native-async-storage/async-storage';
 import { selector, useRecoilValueLoadable } from 'recoil';
+import { v4 as uuid } from 'uuid';
 
 import { TruvApiClient } from '../api/truv';
 import { productSettingsState } from './product';
@@ -17,7 +18,7 @@ const userIdState = selector<string>({
     const settings = get(selectedSettings);
 
     const apiClient = new TruvApiClient(process.env.TRUV_API_HOST as string, settings.clientId, settings.accessKey);
-    const userId = await apiClient.createUser('demo-app');
+    const userId = await apiClient.createUser(uuid());
 
     await asyncStorage.setItem('userId', userId);
 
