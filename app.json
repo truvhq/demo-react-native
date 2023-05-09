@@ -1,16 +1,18 @@
 {
   "expo": {
     "name": "Truv Demo React Native",
-    "slug": "truv-demo",
+    "slug": "main",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "entryPoint": "index.js",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      "./android-webview-debug.js"
+    ],
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -26,11 +28,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.truv"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "description": ""
+    "description": "",
+    "extra": {
+      "eas": {
+        "projectId": "5a46763d-c9e1-4723-9b06-22e37adeff51"
+      }
+    }
   }
 }

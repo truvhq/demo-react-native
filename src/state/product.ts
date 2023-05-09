@@ -1,5 +1,7 @@
 import { atom, useRecoilState } from 'recoil';
 
+import { ProductSettings } from '../api/truv';
+
 const widgetState = atom<boolean>({
   key: 'widgetState',
   default: false,

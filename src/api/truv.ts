@@ -55,11 +55,15 @@ export class TruvApiClient {
   }
 
   async createUser(userId: string) {
-    const response = await this.request<{ id: string }>(
+    const response = await this.request<{ id: string; error?: { message: string } }>(
       'POST',
       '/v1/users/',
       JSON.stringify({ external_user_id: userId })
     );
+
+    if (response.error) {
+      throw new Error(response.error.message);
+    }
 
     return response.id;
   }
@@ -85,6 +89,8 @@ export class TruvApiClient {
             : undefined,
       })
     );
+
+    console.log('response', response);
 
     return response.bridge_token;
   }
