@@ -17,7 +17,7 @@ const asyncStorageEffect =
 
 export const envState = atom<keyof AccessKeys>({
   key: 'envState',
-  default: 'sandbox',
+  default: asyncStorage.getItem('env').then((data) => (data ? JSON.parse(data) : 'sandbox')),
   effects: [asyncStorageEffect('env')],
 });
 
@@ -27,7 +27,7 @@ export const useEnv = () => {
 
 export const clientIdState = atom<string>({
   key: 'clientIdState',
-  default: '',
+  default: asyncStorage.getItem('clientId').then((data) => (data ? JSON.parse(data) : '')),
   effects: [asyncStorageEffect('clientId')],
 });
 
@@ -43,15 +43,9 @@ export type AccessKeys = {
   prod: string;
 };
 
-const defaultAccessKeys: AccessKeys = {
-  sandbox: '',
-  dev: '',
-  prod: '',
-};
-
 export const accessKeysState = atom<AccessKeys>({
   key: 'accessKeys',
-  default: defaultAccessKeys,
+  default: asyncStorage.getItem('accessKeys').then((data) => (data ? JSON.parse(data) : {})),
   effects: [asyncStorageEffect('accessKeys')],
 });
 
@@ -67,10 +61,11 @@ export const selectedSettings = selector({
     const clientId = get(clientIdState);
     const env = get(envState);
     const accessKeys = get(accessKeysState);
+    const key = accessKeys[env as keyof AccessKeys];
 
     return {
       clientId,
-      accessKey: accessKeys[env as keyof AccessKeys],
+      accessKey: key,
     };
   },
 });

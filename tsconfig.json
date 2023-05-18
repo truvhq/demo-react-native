@@ -3,6 +3,7 @@
   "compilerOptions": {
     "jsx": "react",
     "strict": true,
+    "module": "esnext",
     "typeRoots": ["node_modules", "./types.d.ts"]
   }
 }
