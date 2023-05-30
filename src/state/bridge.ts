@@ -22,7 +22,7 @@ const userIdState = selector<string>({
 
       return userId;
     } catch (e) {
-      console.error(1111, e);
+      console.error(e);
       throw e;
     }
   },
