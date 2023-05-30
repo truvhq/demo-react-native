@@ -29,6 +29,7 @@ export const ProductScreen = ({ navigation }: NativeStackScreenProps<ProductStac
       <View style={styles.container}>
         {isWidgetVisible ? (
           <TruvBridge
+            __cdnUrl="http://localhost:3700/mobile.html"
             bridgeToken={bridgeToken ?? ''}
             style={styles.container}
             onClose={() => {
