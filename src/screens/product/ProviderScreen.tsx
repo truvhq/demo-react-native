@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     color: 'rgba(60, 60, 67, 0.6)',
   },
   link: {
-    color: 'rgba(13, 171, 76, 1)',
+    color: '#2C64E3',
   },
 });
