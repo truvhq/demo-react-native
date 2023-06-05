@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   link: {
-    color: 'rgba(13, 171, 76, 1)',
+    color: '#2C64E3',
   },
 });

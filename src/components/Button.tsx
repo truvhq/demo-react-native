@@ -20,7 +20,7 @@ export const Button = ({ children, onPress, disabled }: ButtonProps) => {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: '#0DAB4C',
+    backgroundColor: '#2C64E3',
     borderRadius: 8,
     paddingVertical: 14,
     paddingHorizontal: 16,
