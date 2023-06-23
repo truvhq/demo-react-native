@@ -33,7 +33,7 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "expo": "~48.0.15",
     "expo-splash-screen": "~0.18.2",
-    "expo-status-bar": "~1.4.4",
+    "expo-status-bar": "~1.5.0",
     "prettier": "^2.4.1",
     "raw-loader": "^4.0.2",
     "react": "18.2.0",
