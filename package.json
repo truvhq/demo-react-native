@@ -31,7 +31,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
-    "expo": "~48.0.15",
+    "expo": "~49.0.0",
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
     "prettier": "^2.4.1",
