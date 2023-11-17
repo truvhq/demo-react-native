@@ -21,8 +21,7 @@ export const ProductScreen = ({
   navigation,
 }: NativeStackScreenProps<ProductStackParamList, 'Index'>) => {
   const [isWidgetVisible, setWidgetVisible] = useWidget();
-  const productSettings = useProductSettings();
-  const [product, setProduct] = useState<Product>('employment');
+  const [productSettings, setProductSettings] = useProductSettings();
   const {log} = useConsole();
   const cdnHost = useCdnHost();
   const bridgeTokenLoadable = useBridgeToken();
@@ -59,8 +58,13 @@ export const ProductScreen = ({
               <Header>Product</Header>
               <FieldSet>
                 <ProductsSelect
-                  value={product}
-                  onChange={(product: Product) => setProduct(product)}
+                  value={productSettings.productType}
+                  onChange={(product: Product) =>
+                    setProductSettings(prev => ({
+                      ...prev,
+                      productType: product,
+                    }))
+                  }
                 />
               </FieldSet>
               <AdditionalSettings>
@@ -73,7 +77,8 @@ export const ProductScreen = ({
                     route="Provider ID"
                     value={productSettings.providerId}
                   />
-                  {(product === 'deposit_switch' || product === 'pll') && (
+                  {(productSettings.productType === 'deposit_switch' ||
+                    productSettings.productType === 'pll') && (
                     <>
                       <Field
                         route="Deposit Value"

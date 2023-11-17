@@ -3,8 +3,10 @@ export const products = {
   income: 'Income and employment',
   deposit_switch: 'Direct deposit switch',
   pll: 'Paycheck Linked Loan',
-  directory: 'Employee directory',
-  history: 'Payroll history',
+  admin: 'Employee directory',
+  insurance: 'Insurance',
+  transactions: 'Transactions',
+  assets: 'Assets',
 } as const;
 
 export type Product = keyof typeof products;
@@ -19,14 +21,6 @@ export type ProductSettings = {
   accountNumber: string;
   bankName: string;
   accountType: 'checking';
-};
-
-export const mapValueToProduct = (value: Product) => {
-  if (value === 'directory' || value === 'history') {
-    return 'admin';
-  }
-
-  return value;
 };
 
 export class TruvApiClient {
@@ -81,7 +75,7 @@ export class TruvApiClient {
       'POST',
       `/v1/users/${userId}/tokens/`,
       JSON.stringify({
-        product_type: mapValueToProduct(productSettings.productType),
+        product_type: productSettings.productType,
         provider_id: productSettings.providerId || undefined,
         company_mapping_id: productSettings.mappingId || undefined,
         account:

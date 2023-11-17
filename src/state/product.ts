@@ -1,4 +1,4 @@
-import {useAtomValue, atom, useAtom} from 'jotai';
+import {atom, useAtom} from 'jotai';
 import {ProductSettings} from '../api/truv';
 
 const widgetState = atom<boolean>(false);
@@ -20,5 +20,5 @@ export const productSettingsState = atom<ProductSettings>({
 });
 
 export const useProductSettings = () => {
-  return useAtomValue(productSettingsState);
+  return useAtom(productSettingsState);
 };
