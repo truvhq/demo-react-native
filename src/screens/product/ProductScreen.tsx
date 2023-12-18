@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import TruvBridge from '@truv/react-native';
+import TruvBridge from 'test-trv-rn-sdk';
 import {Alert, StyleSheet, View} from 'react-native';
 
 import {AdditionalSettings} from '../../components/AdditionalSettings';
@@ -33,9 +33,8 @@ export const ProductScreen = ({
       <View style={styles.container}>
         {isWidgetVisible ? (
           <TruvBridge
-            __cdnUrl={`${cdnHost}/mobile.html`}
             bridgeToken={bridgeToken ?? ''}
-            style={styles.container}
+            style={styles.bridge}
             onClose={() => {
               setWidgetVisible(false);
               log('widget closed');
@@ -97,6 +96,10 @@ export const ProductScreen = ({
                         value={productSettings.bankName}
                       />
                       <Field
+                        route="Bank Address"
+                        value={productSettings.bankAddress}
+                      /
+                      <Field
                         route="Account type"
                         value={productSettings.accountType}
                       />
@@ -139,6 +142,11 @@ export const ProductScreen = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  bridge: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   body: {
     flex: 1,

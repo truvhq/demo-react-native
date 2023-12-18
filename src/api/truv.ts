@@ -20,6 +20,7 @@ export type ProductSettings = {
   routingNumber: string;
   accountNumber: string;
   bankName: string;
+  bankAddress: string;
   accountType: 'checking';
 };
 
@@ -86,14 +87,14 @@ export class TruvApiClient {
                 account_type: productSettings.accountType,
                 bank_name: productSettings.bankName,
                 routing_number: productSettings.routingNumber,
-                deposit_value: productSettings.depositValue,
+                deposit_value: productSettings.depositValue
+                  ? productSettings.depositValue
+                  : undefined,
                 deposit_type: productSettings.depositType,
               }
             : undefined,
       }),
     );
-
-    console.log('response', response);
 
     return response.bridge_token;
   }

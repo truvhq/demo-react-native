@@ -17,6 +17,7 @@ export const productSettingsState = atom<ProductSettings>({
   accountNumber: '160025987',
   bankName: 'TD Bank',
   accountType: 'checking',
+  bankAddress: '123 Main St',
 });
 
 export const useProductSettings = () => {

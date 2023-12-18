@@ -5,7 +5,7 @@
  * @format
  */
 
-import TruvBridge from '@truv/react-native';
+import TruvBridge from 'test-trv-rn-sdk';
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme, View} from 'react-native';
 
