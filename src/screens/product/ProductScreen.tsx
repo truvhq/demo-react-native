@@ -98,7 +98,7 @@ export const ProductScreen = ({
                       <Field
                         route="Bank Address"
                         value={productSettings.bankAddress}
-                      /
+                      />
                       <Field
                         route="Account type"
                         value={productSettings.accountType}
