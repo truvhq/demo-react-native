@@ -1,4 +1,4 @@
-package com.demorn71;
+package com.truv.demo.reactnative;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

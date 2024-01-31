@@ -93,9 +93,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.demorn71"
+    namespace "com.truv.demo.reactnative"
     defaultConfig {
-        applicationId "com.demorn71"
+        applicationId "com.truv.demo.reactnative"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

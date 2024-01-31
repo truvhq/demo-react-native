@@ -1,5 +1,5 @@
 {
-  "name": "demoRN71",
+  "name": "TruvDemoRN",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "@react-navigation/bottom-tabs": "6.5.7",
     "@react-navigation/native": "6.1.6",
     "@react-navigation/native-stack": "6.9.12",
-    "test-trv-rn-sdk": "0.0.20",
+    "test-trv-rn-sdk": "0.0.24",
     "@types/uuid": "^9.0.7",
     "jotai": "^2.5.1",
     "react": "18.2.0",
