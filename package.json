@@ -19,7 +19,7 @@
     "@types/uuid": "^9.0.7",
     "jotai": "^2.5.1",
     "react": "18.2.0",
-    "react-native": "0.71.8",
+    "react-native": "0.73.0",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-get-random-values": "^1.8.0",
     "react-native-picker-select": "^8.0.4",
