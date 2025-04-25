@@ -60,9 +60,9 @@ export const ProductScreen = ({
   return (
     <Layout white={isWidgetVisible}>
       <View style={styles.container}>
-        {isWidgetVisible ? (
+        {isWidgetVisible && bridgeToken ? (
           <TruvBridge
-            bridgeToken={'0913b045b3c34473b1746e0093338c6b'}
+            bridgeToken={bridgeToken}
             style={styles.bridge}
             onClose={onClose}
             onError={onError}
