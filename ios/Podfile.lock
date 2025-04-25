@@ -1197,73 +1197,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated (3.16.7):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.16.7)
-    - RNReanimated/worklets (= 3.16.7)
-    - Yoga
-  - RNReanimated/reanimated (3.16.7):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 3.16.7)
-    - Yoga
-  - RNReanimated/reanimated/apple (3.16.7):
-    - DoubleConversion
-    - glog
-    - hermes-engine
-    - RCT-Folly (= 2024.01.01.00)
-    - RCTRequired
-    - RCTTypeSafety
-    - React-Codegen
-    - React-Core
-    - React-debug
-    - React-Fabric
-    - React-featureflags
-    - React-graphics
-    - React-ImageManager
-    - React-NativeModulesApple
-    - React-RCTFabric
-    - React-rendererdebug
-    - React-utils
-    - ReactCommon/turbomodule/bridging
-    - ReactCommon/turbomodule/core
-    - Yoga
-  - RNReanimated/worklets (3.16.7):
+  - RNReanimated (3.11.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1583,7 +1517,7 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: ec53e44dc3e75b44aa2a9f37618a49c3bc080a7a
   RNCPicker: 4f6d5e8d107064be32dfc8f1bcb5a3741135db0b
   RNGestureHandler: 29c5c18249e444b9300d66ad567202c2e278b4a6
-  RNReanimated: b0728bed09875d78b9a3a0ba0e2d1171f63f8b5a
+  RNReanimated: 7ad0f08a845cb60955ee5d461d2156d7b9707118
   RNScreens: 177a3fedd12fc8d12af3c23f17e7bbdc9749a2cd
   RNSVG: 963a95f1f5d512a13d11ffd50d351c87fb5c6890
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
