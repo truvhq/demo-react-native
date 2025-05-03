@@ -1983,7 +1983,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (14.2.0):
+  - RNSVG (15.11.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2006,9 +2006,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNSVG/common (= 14.2.0)
+    - RNSVG/common (= 15.11.2)
     - Yoga
-  - RNSVG/common (14.2.0):
+  - RNSVG/common (15.11.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2033,15 +2033,15 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.7.1)
-  - truv-react-native (3.1.0):
+  - truv-react-native (3.2.0):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
     - React-Codegen
     - React-Core
     - ReactCommon/turbomodule/core
-    - TruvSDK (= 1.2.5)
-  - TruvSDK (1.2.5)
+    - TruvSDK (= 1.5.1)
+  - TruvSDK (1.5.1)
   - Yoga (0.0.0)
 
 DEPENDENCIES:
@@ -2380,10 +2380,10 @@ SPEC CHECKSUMS:
   RNGestureHandler: 5d8431415d4b8518e86e289e9ad5bb9be78f6dba
   RNReanimated: 8b24b49fc13fce9a6e1729ccff645a63d2b7a6d1
   RNScreens: 297343f8f56f6a11ee0ebed0848e074120c5bfd7
-  RNSVG: d137f225252362021a2c78511ead118089aa46c8
+  RNSVG: ee32efbed652c5151fd3f98bed13c68af285bc38
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  truv-react-native: 116d7e34fa85727688882aad18132493cd40e7c1
-  TruvSDK: 7cc3f5a1d50ea515db33fe3658e798958bac5bdd
+  truv-react-native: bbd9fb415155ce5af7aa0f27435aca98ee07c32a
+  TruvSDK: dffe84d01d5bb93f2a33ecf99255b236c7c68a7d
   Yoga: d15f5aa644c466e917569ac43b19cbf17975239a
 
 PODFILE CHECKSUM: 653b51704df5c4eb09b25d1a0d2f37c1a9d6ce7e
