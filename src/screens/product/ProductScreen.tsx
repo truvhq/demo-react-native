@@ -1,7 +1,7 @@
 import React, {useCallback} from 'react';
 
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import TruvBridge from '@truv/react-native';
+import TruvBridge, { TruvEventPayload, TruvSuccessPayload } from '@truv/react-native';
 import {Alert, StyleSheet, View} from 'react-native';
 
 import {AdditionalSettings} from '../../components/AdditionalSettings';
@@ -43,7 +43,7 @@ export const ProductScreen = ({
   }, [addLog]);
 
   const onSuccess = useCallback(
-    (data: any) => {
+    (data: TruvSuccessPayload) => {
       setWidgetVisible(false);
       addLog(`widget succeeded ${JSON.stringify(data)}`);
     },
@@ -51,7 +51,7 @@ export const ProductScreen = ({
   );
 
   const onEvent = useCallback(
-    (event: any) => {
+    (event: TruvEventPayload) => {
       addLog(JSON.stringify(event, null, 2));
     },
     [addLog],
