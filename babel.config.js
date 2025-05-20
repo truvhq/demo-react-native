@@ -9,5 +9,6 @@ module.exports = {
         extensions: ['.svg'],
       },
     ],
+    './babel-plugin-import-meta.js',
   ],
 };

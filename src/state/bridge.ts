@@ -1,4 +1,3 @@
-import asyncStorage from '@react-native-async-storage/async-storage';
 import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 
@@ -20,8 +19,6 @@ const userIdState = atom(async get => {
     const userId = await apiClient.createUser(`react-native-demo-${uuid()}`);
 
     console.log('created user with id ', userId);
-
-    await asyncStorage.setItem('userId', userId);
 
     return userId;
   } catch (e) {
