@@ -2033,7 +2033,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.7.1)
-  - truv-react-native (4.2.0-rc.1):
+  - truv-react-native (4.2.0):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -2382,7 +2382,7 @@ SPEC CHECKSUMS:
   RNScreens: 297343f8f56f6a11ee0ebed0848e074120c5bfd7
   RNSVG: ee32efbed652c5151fd3f98bed13c68af285bc38
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  truv-react-native: 3465b17741c49cbbca5ff23b1131a97f7af72e5d
+  truv-react-native: 78b2fc8fba0ca91a7e153e1ca0e19a202a22caf2
   TruvSDK: 4b863d1d02353b68d680321b82edbd970f808316
   Yoga: d15f5aa644c466e917569ac43b19cbf17975239a
 
