@@ -15,7 +15,7 @@ import {ProductStackParamList} from './types';
 import {Product} from '../../api/truv';
 import {useConsole, useProductSettings, useWidget} from '../../state';
 import {useBridgeToken} from '../../state/bridge';
-// import {useCdnHost} from '../../state/settings';
+import {useTruvConfig} from '../../state/settings';
 
 export const ProductScreen = ({
   navigation,
@@ -23,7 +23,7 @@ export const ProductScreen = ({
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings, setProductSettings] = useProductSettings();
   const {addLog} = useConsole();
-  // const cdnHost = useCdnHost();
+  const truvConfig = useTruvConfig();
   const bridgeTokenLoadable = useBridgeToken();
   const bridgeToken =
     bridgeTokenLoadable.state === 'hasData' ? bridgeTokenLoadable.data : null;
@@ -69,6 +69,7 @@ export const ProductScreen = ({
             onEvent={onEvent}
             onLoad={onLoad}
             onSuccess={onSuccess}
+            config={truvConfig}
           />
         ) : (
           <View style={styles.body}>

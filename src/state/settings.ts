@@ -67,10 +67,34 @@ const cdnHostMap: Record<string, string> = {
   stage: 'https://cdn-stage.truv.com',
 };
 
+const orderUrlMap: Record<string, string> = {
+  prod: 'https://my.truv.com',
+  stage: 'https://my-stage.truv.com',
+  dev: 'https://my-dev.truv.com',
+};
+
 export const useCdnHost = () => {
   const [backend] = useAtom(backendState);
 
   return cdnHostMap[backend];
+};
+
+export type TruvConfig = {
+  apiUrl?: string;
+  cdnUrl?: string;
+  orderUrl?: string;
+  orderEnvironment?: string;
+  isDebug?: boolean;
+};
+
+export const useTruvConfig = (): TruvConfig => {
+  const [backend] = useAtom(backendState);
+  return {
+    apiUrl: apiHostMap[backend],
+    cdnUrl: cdnHostMap[backend],
+    orderUrl: orderUrlMap[backend],
+    isDebug: true,
+  };
 };
 
 export const selectedSettings = atom(async get => {

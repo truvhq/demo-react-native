@@ -4,10 +4,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { SvgXml } from 'react-native-svg';
 
 import consoleSvg from '../assets/console.svg';
+import orderSvg from '../assets/order.svg';
 import productSvg from '../assets/product.svg';
 import settingsSvg from '../assets/settings.svg';
 
 import { ConsoleScreen } from './ConsoleScreen';
+import { OrderScreen } from './screens/order/OrderScreen';
 import { Product } from './screens/product';
 import { Settings } from './screens/settings';
 
@@ -50,6 +52,13 @@ export const Navigation = () => {
         name="Product"
         options={() => ({
           tabBarIcon: ({ size, color }) => <SvgXml fill={color} height={size} width={size} xml={productSvg} />,
+        })}
+      />
+      <Tab.Screen
+        component={OrderScreen}
+        name="Order"
+        options={() => ({
+          tabBarIcon: ({ size, color }) => <SvgXml fill={color} height={size} width={size} xml={orderSvg} />,
         })}
       />
       <Tab.Screen
