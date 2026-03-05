@@ -64,7 +64,7 @@ export const OrderScreen = () => {
             <Button
               disabled={!orderToken.trim()}
               onPress={() => {
-                addLog(`Opening Widget with bridge_token ${orderToken}`);
+                addLog(`Opening Order with bridge_token ${orderToken}`);
                 setWidgetVisible(true);
               }}>
               Open Order
