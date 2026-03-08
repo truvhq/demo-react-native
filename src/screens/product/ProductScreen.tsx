@@ -33,11 +33,6 @@ export const ProductScreen = ({
     addLog('widget closed');
   }, [addLog, setWidgetVisible]);
 
-  const onError = useCallback(() => {
-    setWidgetVisible(false);
-    addLog('widget error');
-  }, [addLog, setWidgetVisible]);
-
   const onLoad = useCallback(() => {
     addLog('widget loaded');
   }, [addLog]);
@@ -65,7 +60,6 @@ export const ProductScreen = ({
             bridgeToken={bridgeToken}
             style={styles.bridge}
             onClose={onClose}
-            onError={onError}
             onEvent={onEvent}
             onLoad={onLoad}
             onSuccess={onSuccess}

@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from 'react';
 
-import {TruvEventPayload, TruvOrderEventType, TruvOrderBridge} from '@truv/react-native';
+import {TruvEventPayload, TruvOrderEventPayload, TruvOrder} from '@truv/react-native';
 import {StyleSheet, TextInput, View} from 'react-native';
 
 import {Button} from '../../components/Button';
@@ -25,11 +25,11 @@ export const OrderScreen = () => {
   );
 
   const onOrderEvent = useCallback(
-    (eventType: TruvOrderEventType) => {
-      if (eventType === "CLOSE") {
+    (event: TruvOrderEventPayload) => {
+      if (event.eventType === 'CLOSE') {
         setWidgetVisible(false);
       }
-      addLog(`Order event: ${eventType}`);
+      addLog(`Order event: ${event}`);
     },
     [addLog],
   );
@@ -38,7 +38,7 @@ export const OrderScreen = () => {
     <Layout white={isWidgetVisible}>
       <View style={styles.container}>
         {isWidgetVisible && orderToken ? (
-          <TruvOrderBridge
+          <TruvOrder
             bridgeToken={orderToken}
             style={styles.bridge}
             onWidgetEvent={onWidgetEvent}
