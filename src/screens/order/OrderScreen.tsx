@@ -29,7 +29,7 @@ export const OrderScreen = () => {
       if (event.eventType === 'CLOSE') {
         setWidgetVisible(false);
       }
-      addLog(`Order event: ${event}`);
+      addLog(`Order event: ${JSON.stringify(event, null, 2)}`);
     },
     [addLog],
   );

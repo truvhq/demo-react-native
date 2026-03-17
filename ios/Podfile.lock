@@ -1337,7 +1337,7 @@ PODS:
     - React-Core
   - react-native-get-random-values (1.11.0):
     - React-Core
-  - react-native-safe-area-context (5.4.0):
+  - react-native-safe-area-context (5.7.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1352,8 +1352,8 @@ PODS:
     - React-hermes
     - React-ImageManager
     - React-jsi
-    - react-native-safe-area-context/common (= 5.4.0)
-    - react-native-safe-area-context/fabric (= 5.4.0)
+    - react-native-safe-area-context/common (= 5.7.0)
+    - react-native-safe-area-context/fabric (= 5.7.0)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-renderercss
@@ -1363,7 +1363,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context/common (5.4.0):
+  - react-native-safe-area-context/common (5.7.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1387,7 +1387,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-safe-area-context/fabric (5.4.0):
+  - react-native-safe-area-context/fabric (5.7.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1760,7 +1760,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNCPicker (2.11.0):
+  - RNCPicker (2.11.4):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1784,7 +1784,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNGestureHandler (2.26.0):
+  - RNGestureHandler (2.30.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1983,7 +1983,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (15.11.2):
+  - RNSVG (15.15.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2006,9 +2006,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNSVG/common (= 15.11.2)
+    - RNSVG/common (= 15.15.3)
     - Yoga
-  - RNSVG/common (15.11.2):
+  - RNSVG/common (15.15.3):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2033,7 +2033,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - Yoga
   - SocketRocket (0.7.1)
-  - truv-react-native (4.4.0-rc.1):
+  - truv-react-native (4.4.0-rc.3):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -2342,7 +2342,7 @@ SPEC CHECKSUMS:
   React-microtasksnativemodule: 32f7f13d65525e981e9a5b28cebad7d10e0ff711
   react-native-cookies: f54fcded06bb0cda05c11d86788020b43528a26c
   react-native-get-random-values: 21325b2244dfa6b58878f51f9aa42821e7ba3d06
-  react-native-safe-area-context: 00d03dc688ba86664be66f9e3f203fc7d747d899
+  react-native-safe-area-context: 516bf22a449af36c2ad0f596487f75bab1659e0c
   react-native-webview: 9f111dfbcfc826084d6c507f569e5e03342ee1c1
   React-NativeModulesApple: 6d750bb9829fdf0f02c56e9a68cbb390e1f5de25
   React-oscompat: 74eb4badd12e93899f37a5dbb03d8a638011a292
@@ -2376,13 +2376,13 @@ SPEC CHECKSUMS:
   ReactCodegen: 3288d61658273d72fbd348a74b59710b9790615f
   ReactCommon: 9f975582dc535de1de110bdb46d4553140a77541
   RNCAsyncStorage: aa2fec76310ebe0c7fe159a26755e099170116bb
-  RNCPicker: 04b02770d871072243f4a95fa2523b9c3398a2f5
-  RNGestureHandler: 970902e9f2f6308b2a2519ce93108fbc65460933
+  RNCPicker: 83c74db2de8274d8a8f3e18d91dea174a708f8c4
+  RNGestureHandler: e17848ce668727c376b4590ceaa9ae378baff2ed
   RNReanimated: 6a437c90e263e4a2202a282f9d6dea0ad28d018d
   RNScreens: 297343f8f56f6a11ee0ebed0848e074120c5bfd7
-  RNSVG: ee32efbed652c5151fd3f98bed13c68af285bc38
+  RNSVG: cb599d615cb91292196733ee755f530711b28607
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  truv-react-native: ed7c022075ba17fb8119e462dbbc46c8ccaa0ca3
+  truv-react-native: da1e2009419738c588877962baf6f48af1e07ed7
   TruvSDK: 5a89612ec217bc628574af3a6eb17c17ec2d3234
   Yoga: d15f5aa644c466e917569ac43b19cbf17975239a
 
