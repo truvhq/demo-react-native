@@ -15,7 +15,7 @@ import {ProductStackParamList} from './types';
 import {Product} from '../../api/truv';
 import {useConsole, useProductSettings, useWidget} from '../../state';
 import {useBridgeToken} from '../../state/bridge';
-// import {useCdnHost} from '../../state/settings';
+import {useTruvConfig} from '../../state/settings';
 
 export const ProductScreen = ({
   navigation,
@@ -23,7 +23,7 @@ export const ProductScreen = ({
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings, setProductSettings] = useProductSettings();
   const {addLog} = useConsole();
-  // const cdnHost = useCdnHost();
+  const truvConfig = useTruvConfig();
   const bridgeTokenLoadable = useBridgeToken();
   const bridgeToken =
     bridgeTokenLoadable.state === 'hasData' ? bridgeTokenLoadable.data : null;
@@ -31,11 +31,6 @@ export const ProductScreen = ({
   const onClose = useCallback(() => {
     setWidgetVisible(false);
     addLog('widget closed');
-  }, [addLog, setWidgetVisible]);
-
-  const onError = useCallback(() => {
-    setWidgetVisible(false);
-    addLog('widget error');
   }, [addLog, setWidgetVisible]);
 
   const onLoad = useCallback(() => {
@@ -65,10 +60,10 @@ export const ProductScreen = ({
             bridgeToken={bridgeToken}
             style={styles.bridge}
             onClose={onClose}
-            onError={onError}
             onEvent={onEvent}
             onLoad={onLoad}
             onSuccess={onSuccess}
+            config={truvConfig}
           />
         ) : (
           <View style={styles.body}>
