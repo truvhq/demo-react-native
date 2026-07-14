@@ -1906,10 +1906,10 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@truv/react-native@4.4.0":
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/@truv/react-native/-/react-native-4.4.0.tgz#864d52f7d59356f42261fba24ba376d20ebb7b5f"
-  integrity sha512-LpPkOYSaVM+teV8kuqsMVKIDhDLfHFBiM3KZ/Vz7NkbodHZEfQjS2zwyo56t1+FE3Pi07igoU0XOpMsGFxa2Mw==
+"@truv/react-native@4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@truv/react-native/-/react-native-4.5.0.tgz#c93c333b019819e92c6f220a0d9e816f86cf860b"
+  integrity sha512-EbgFIiJNFwnRDwQnEkShKZ73/1sSVyCmkNJvjyroPybRX9+fgLu8buUCa6sZ2DM7yFXvTDZ9k+6zNuUwqDk1Yg==
 
 "@types/babel__core@^7.1.14":
   version "7.20.5"
