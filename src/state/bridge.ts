@@ -2,57 +2,81 @@ import 'react-native-get-random-values';
 import {v4 as uuid} from 'uuid';
 
 import {productSettingsState} from './product';
-import {selectedSettings} from './settings';
-import {TruvApiClient} from '../api/truv';
+import {readSelectedSettings} from './settings';
+import {consoleState} from './console';
+import {TruvApiClient, TruvApiError} from '../api/truv';
 import {atom, useAtomValue} from 'jotai';
-import {loadable} from 'jotai/utils';
 
-const userIdState = atom(async get => {
-  const settings = await get(selectedSettings);
+type UserSession = {
+  userId: string;
+  contextKey: string;
+};
 
-  try {
+const $userSessionState = atom<UserSession | null>(null);
+const $bridgeTokenState = atom<string | null>(null);
+
+const requestErrorMessage = (action: string, error: unknown): string => {
+  if (error instanceof TruvApiError) {
+    return `${action} error (HTTP ${error.statusCode}): ${error.body}`;
+  }
+  return `${action} error: ${
+    error instanceof Error ? error.message : String(error)
+  }`;
+};
+
+export const openBridgeAction = atom(
+  null,
+  async (get, set): Promise<string | null> => {
+    const settings = await readSelectedSettings();
+    const log = (message: string) =>
+      set(consoleState, prev => [...prev, message]);
+
+    if (!settings.clientId || !settings.accessKey) {
+      log("Can't open Truv Bridge: access key or client ID is empty");
+      return null;
+    }
+
     const apiClient = new TruvApiClient(
       settings.apiHost,
       settings.clientId,
       settings.accessKey,
+      log,
     );
-    const userId = await apiClient.createUser(`react-native-demo-${uuid()}`);
+    const contextKey = `${settings.apiHost}|${settings.clientId}|${settings.accessKey}`;
 
-    console.log('created user with id ', userId);
+    const session = get($userSessionState);
+    if (session && session.contextKey !== contextKey) {
+      set($userSessionState, null);
+    }
+    let userId =
+      session && session.contextKey === contextKey ? session.userId : null;
 
-    return userId;
-  } catch (e) {
-    console.error('cannot create a user', e, settings);
-    throw e;
-  }
-});
+    if (!userId) {
+      try {
+        userId = await apiClient.createUser(`react-native-demo-${uuid()}`);
+        set($userSessionState, {userId, contextKey});
+        log(`User created with id: ${userId}`);
+      } catch (e) {
+        log(requestErrorMessage('User creation', e));
+        return null;
+      }
+    }
 
-const $bridgeToken = atom(async get => {
-  const settings = await get(selectedSettings);
-  const productSettings = get(productSettingsState);
-  const apiClient = new TruvApiClient(
-    settings.apiHost,
-    settings.clientId,
-    settings.accessKey,
-  );
-  const userId = await get(userIdState);
-
-  console.log('creating bridge token for user ', userId);
-
-  try {
-    const bridgeToken = await apiClient.getBridgeToken(userId, productSettings);
-
-    console.log('got bridge token', bridgeToken);
-
-    return bridgeToken;
-  } catch (e) {
-    console.error('error getting bridge token', e);
-    throw e;
-  }
-});
-
-const $bridgeTokenLoadable = loadable($bridgeToken);
+    try {
+      const bridgeToken = await apiClient.getBridgeToken(
+        userId,
+        get(productSettingsState),
+      );
+      log(`Got bridge token: ${bridgeToken}`);
+      set($bridgeTokenState, bridgeToken);
+      return bridgeToken;
+    } catch (e) {
+      log(requestErrorMessage('Bridge token', e));
+      return null;
+    }
+  },
+);
 
 export const useBridgeToken = () => {
-  return useAtomValue($bridgeTokenLoadable);
+  return useAtomValue($bridgeTokenState);
 };
