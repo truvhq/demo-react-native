@@ -1,17 +1,33 @@
 import asyncStorage from '@react-native-async-storage/async-storage';
 import {atomWithStorage, createJSONStorage, atomFamily} from 'jotai/utils';
-import {atom, useAtom} from 'jotai';
+import {useAtom} from 'jotai';
 
 const stringStorage = createJSONStorage<string>(() => asyncStorage);
 const accessKeysStorage = createJSONStorage<AccessKeys>(() => asyncStorage);
 
-const backendState = atomWithStorage<string>('backend', 'prod', stringStorage);
+const backendKey = 'backend';
+const defaultBackend = 'prod';
+const envKey = (backend: string) => `env-${backend}`;
+const defaultEnv = 'sandbox';
+const clientIdKey = (backend: string) => `clientId-${backend}`;
+const accessKeysKey = (backend: string) => `accessKeys-${backend}`;
+const defaultAccessKeys: AccessKeys = {
+  sandbox: '',
+  dev: '',
+  prod: '',
+};
+
+const backendState = atomWithStorage<string>(
+  backendKey,
+  defaultBackend,
+  stringStorage,
+);
 export const useBackend = () => {
   return useAtom(backendState);
 };
 
 const envState = atomFamily((backend: string) =>
-  atomWithStorage<string>(`env-${backend}`, 'sandbox', stringStorage),
+  atomWithStorage<string>(envKey(backend), defaultEnv, stringStorage),
 );
 
 export const useEnv = () => {
@@ -20,7 +36,7 @@ export const useEnv = () => {
 };
 
 export const clientIdState = atomFamily((backend: string) =>
-  atomWithStorage<string>(`clientId-${backend}`, '', stringStorage),
+  atomWithStorage<string>(clientIdKey(backend), '', stringStorage),
 );
 
 export const useClientId = () => {
@@ -38,12 +54,8 @@ export type AccessKeys = {
 
 export const accessKeysState = atomFamily((backend: string) =>
   atomWithStorage<AccessKeys>(
-    `accessKeys-${backend}`,
-    {
-      sandbox: '',
-      dev: '',
-      prod: '',
-    },
+    accessKeysKey(backend),
+    defaultAccessKeys,
     accessKeysStorage,
   ),
 );
@@ -97,14 +109,15 @@ export const useTruvConfig = (): TruvConfig => {
   };
 };
 
-export const selectedSettings = atom(async get => {
-  const backend = await get(backendState);
-  const clientId = await get(clientIdState(backend));
-  const env = await get(envState(backend));
-  const accessKeys = await get(accessKeysState(backend));
+export const readSelectedSettings = async () => {
+  const backend = await stringStorage.getItem(backendKey, defaultBackend);
+  const clientId = await stringStorage.getItem(clientIdKey(backend), '');
+  const env = await stringStorage.getItem(envKey(backend), defaultEnv);
+  const accessKeys = await accessKeysStorage.getItem(
+    accessKeysKey(backend),
+    defaultAccessKeys,
+  );
   const key = accessKeys[env as keyof AccessKeys];
-
-  console.log('new selected settings', {backend, clientId, env, key});
 
   return {
     clientId,
@@ -112,8 +125,4 @@ export const selectedSettings = atom(async get => {
     apiHost: apiHostMap[backend],
     cdnHost: cdnHostMap[backend],
   };
-});
-
-export const useSelectedSettings = () => {
-  return useAtom(selectedSettings);
 };

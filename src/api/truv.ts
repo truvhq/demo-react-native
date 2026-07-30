@@ -24,15 +24,39 @@ export type ProductSettings = {
   accountType: 'checking';
 };
 
+export class TruvApiError extends Error {
+  readonly statusCode: number;
+  readonly body: string;
+
+  constructor(statusCode: number, body: string) {
+    super(`HTTP ${statusCode}: ${body}`);
+    this.statusCode = statusCode;
+    this.body = body;
+  }
+}
+
+const formatCredential = (value: string): string => {
+  const dashIndex = value.indexOf('-');
+  const visibleLength = dashIndex >= 0 ? dashIndex + 5 : 4;
+  return `"${value.slice(0, visibleLength)}***"`;
+};
+
 export class TruvApiClient {
   private readonly baseUrl: string;
   private readonly clientId: string;
   private readonly apiKey: string;
+  private readonly log: (message: string) => void;
 
-  constructor(baseUrl: string, clientId: string, apiKey: string) {
+  constructor(
+    baseUrl: string,
+    clientId: string,
+    apiKey: string,
+    log: (message: string) => void,
+  ) {
     this.baseUrl = baseUrl;
     this.clientId = clientId;
     this.apiKey = apiKey;
+    this.log = log;
   }
 
   async request<T>(
@@ -40,7 +64,11 @@ export class TruvApiClient {
     path: string,
     body?: string,
   ): Promise<T> {
-    console.log('request', this.baseUrl, method, path, body);
+    this.log(
+      `Starting request ${this.baseUrl}${path} with clientId ${formatCredential(
+        this.clientId,
+      )} and secret ${formatCredential(this.apiKey)}, body: ${body ?? 'null'}`,
+    );
     const response = await fetch(`${this.baseUrl}${path}`, {
       method,
       headers: {
@@ -52,7 +80,7 @@ export class TruvApiClient {
     });
 
     if (!response.ok) {
-      throw new Error(await response.text());
+      throw new TruvApiError(response.status, await response.text());
     }
 
     return response.json();

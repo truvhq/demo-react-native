@@ -1,7 +1,10 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 
+import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
+import {CompositeScreenProps} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import TruvBridge, { TruvEventPayload, TruvSuccessPayload } from '@truv/react-native';
+import {useSetAtom} from 'jotai';
 import {Alert, StyleSheet, View} from 'react-native';
 
 import {AdditionalSettings} from '../../components/AdditionalSettings';
@@ -13,20 +16,24 @@ import {ProductsSelect} from '../../components/ProductsSelect';
 
 import {ProductStackParamList} from './types';
 import {Product} from '../../api/truv';
+import {TabParamList} from '../../Navigation';
 import {useConsole, useProductSettings, useWidget} from '../../state';
-import {useBridgeToken} from '../../state/bridge';
+import {openBridgeAction, useBridgeToken} from '../../state/bridge';
 import {useTruvConfig} from '../../state/settings';
 
 export const ProductScreen = ({
   navigation,
-}: NativeStackScreenProps<ProductStackParamList, 'Index'>) => {
+}: CompositeScreenProps<
+  NativeStackScreenProps<ProductStackParamList, 'Index'>,
+  BottomTabScreenProps<TabParamList>
+>) => {
   const [isWidgetVisible, setWidgetVisible] = useWidget();
   const [productSettings, setProductSettings] = useProductSettings();
+  const [isLoading, setLoading] = useState(false);
   const {addLog} = useConsole();
   const truvConfig = useTruvConfig();
-  const bridgeTokenLoadable = useBridgeToken();
-  const bridgeToken =
-    bridgeTokenLoadable.state === 'hasData' ? bridgeTokenLoadable.data : null;
+  const openBridge = useSetAtom(openBridgeAction);
+  const bridgeToken = useBridgeToken();
 
   const onClose = useCallback(() => {
     setWidgetVisible(false);
@@ -123,16 +130,20 @@ export const ProductScreen = ({
               </AdditionalSettings>
             </View>
             <Button
-              disabled={!bridgeToken}
-              onPress={() => {
-                if (!bridgeToken) {
+              disabled={isLoading}
+              onPress={async () => {
+                setLoading(true);
+                const token = await openBridge();
+                setLoading(false);
+
+                if (!token) {
                   Alert.alert(
                     'Can’t open Truv Bridge',
-                    'Add a key or change the environment in the settings to run Truv Bridge.',
+                    'Check the logs to see what went wrong and change the keys in the settings if needed',
                     [
                       {
-                        text: 'Open settings',
-                        onPress: () => navigation.navigate('Settings'),
+                        text: 'Open logs',
+                        onPress: () => navigation.navigate('Console'),
                       },
                     ],
                   );
@@ -140,7 +151,7 @@ export const ProductScreen = ({
                   return;
                 }
 
-                addLog(`Opening Widget with bridge_token ${bridgeToken}`);
+                addLog(`Opening Widget with bridge_token ${token}`);
 
                 setWidgetVisible(true);
               }}>

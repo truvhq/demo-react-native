@@ -13,7 +13,14 @@ import { OrderScreen } from './screens/order/OrderScreen';
 import { Product } from './screens/product';
 import { Settings } from './screens/settings';
 
-const Tab = createBottomTabNavigator();
+export type TabParamList = {
+  Product: undefined;
+  Order: undefined;
+  Console: undefined;
+  Settings: undefined;
+};
+
+const Tab = createBottomTabNavigator<TabParamList>();
 
 export const Navigation = () => {
   return (
