@@ -31,12 +31,15 @@ target 'demorn73' do
       # :ccache_enabled => true
     )
 
-    # Workaround: Xcode 26 / Apple Clang 21 consteval strictness breaks fmt pod
-    # See: https://github.com/facebook/react-native/issues/55601
+    # Xcode 27 supports iOS 15.0+ only. react_native_post_install raises pod targets,
+    # but not resource bundle targets (e.g. AsyncStorage_resources declares 13.0),
+    # so raise everything below the app's minimum here.
     installer.pods_project.targets.each do |target|
-      if target.name == 'fmt'
-        target.build_configurations.each do |bc|
-          bc.build_settings['CLANG_CXX_LANGUAGE_STANDARD'] = 'c++17'
+      target.build_configurations.each do |bc|
+        current = bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+        next if current.nil?
+        if Gem::Version.new(current) < Gem::Version.new(min_ios_version_supported)
+          bc.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = min_ios_version_supported
         end
       end
     end
