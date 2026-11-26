@@ -2212,8 +2212,6 @@ PODS:
     - React-Codegen
     - React-Core
     - ReactCommon/turbomodule/core
-    - TruvSDK (= 1.11.0)
-  - TruvSDK (1.11.0)
   - Yoga (0.0.0):
     - React-Core-prebuilt
 
@@ -2320,7 +2318,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - React-Codegen
-    - TruvSDK
 
 EXTERNAL SOURCES:
   AsyncStorage:
@@ -2616,8 +2613,7 @@ SPEC CHECKSUMS:
   RNSVG: 0851af4352d2e692b44aada9dd7a1d361c18fcfc
   RNWorklets: c05b04d721cccc1d44182425cd09efeddb6b1bbe
   SocketRocket: 37aec555668fb852ec12e3c0de59a86ca58f0871
-  truv-react-native: 718688a4b655694e559a405525c449569ad5e1d9
-  TruvSDK: 35c7604e9848de96add6402b2ccc9f2ed1080a7c
+  truv-react-native: 744ec81d01b05c59e9af861f4ef2c542bf9d0b6c
   Yoga: d1c536142c5ff8ec8cd856ab2a7c227a1d875c8e
 
 PODFILE CHECKSUM: a591e1248da266d766b48ca123b169894f71e69f
